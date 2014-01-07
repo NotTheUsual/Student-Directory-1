@@ -1,9 +1,14 @@
 puts "The students of my cohort at Makers Academy"
 puts "-------------"
-puts "Me"
-puts "James"
-puts "Andrey"
+students = [
+	"Me",
+	"James",
+	"Andrey"
+]
+
+students.each do |student|
+	puts student
+end
 
 # finally we print the total
-student_count = 3
-puts "Overall we have #{student_count} great students"
+puts "Overall we have #{students.length} great students"
