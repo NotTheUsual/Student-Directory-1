@@ -5,6 +5,5 @@ puts "James"
 puts "Andrey"
 
 # finally we print the total
-print "Overall we have "
-print 3
-puts " great students"
+student_count = 3
+puts "Overall we have #{student_count} great students"
