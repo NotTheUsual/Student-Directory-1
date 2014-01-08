@@ -12,10 +12,12 @@ def get_header(title)
 	outputArray << "=" * title.length
 end
 
-def print_names(names)
+def get_names(names)
+	outputArray = []
 	names.each_with_index do |student, index|
-		puts "#{index}. #{student[:name]} (#{student[:cohort]})"
+		outputArray << "#{index}. #{student[:name]} (#{student[:cohort]})"
 	end
+	outputArray
 end
 
 def print_footer(names)
@@ -41,7 +43,10 @@ end
 
 students = input_students(:November)
 
-output = get_header("The students of my cohort at Makers Academy")
-print (output.join("\n") + "\n")
+outputHeader = get_header("The students of my cohort at Makers Academy")
+outputBody = get_names(students)
+
+print (outputHeader.join("\n") + "\n" + outputBody.join("\n") + "\n")
+
 print_names(students)
 print_footer(students)
