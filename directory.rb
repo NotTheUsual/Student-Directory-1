@@ -1,7 +1,9 @@
 students = [
 	"Me",
 	"James",
-	"Andrey"
+	"Andrey",
+	"Ming the merciless",
+	"Donald Duck"
 ]
 
 def print_header
