@@ -13,8 +13,8 @@ def get_header(title)
 end
 
 def print_names(names)
-	names.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]})"
+	names.each_with_index do |student, index|
+		puts "#{index}. #{student[:name]} (#{student[:cohort]})"
 	end
 end
 
