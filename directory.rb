@@ -24,13 +24,13 @@ def get_names(students, first_letter = nil, max_length = 12)
 
 	outputArray = []
 	students.each_with_index do |student, index|
-		outputArray << "#{index}. #{student[:name]} (#{student[:cohort]})"
+		outputArray << "#{index}. #{student[:name]} (#{student[:cohort]})".center(80)
 	end
 	outputArray
 end
 
 def print_footer(names)
-	puts "Overall we have #{names.length} great students"
+	puts "Overall we have #{names.length} great students".center(80)
 end
 
 def input_students(cohort)
