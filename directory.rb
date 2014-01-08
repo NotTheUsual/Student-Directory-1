@@ -12,9 +12,13 @@ def get_header(title)
 	outputArray << "=" * title.length
 end
 
-def get_names(names)
+def get_names(students, first_letter = nil)
+	if first_letter.nil?
+		students.select!{|student| student[:name].chars.first == "A"}
+	end
+
 	outputArray = []
-	names.each_with_index do |student, index|
+	students.each_with_index do |student, index|
 		outputArray << "#{index}. #{student[:name]} (#{student[:cohort]})"
 	end
 	outputArray
