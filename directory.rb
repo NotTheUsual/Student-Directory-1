@@ -5,11 +5,11 @@ students = [
 	{name: "Ming the merciless", cohort: :July},
 	{name: "Donald Duck", cohort: :July}
 ]
-outputString = ""
 
-def print_header(title)
-	underline = "=" * title.length
-	title + "\n" + underline + "\n"
+def get_header(title)
+	outputArray = []
+	outputArray << title
+	outputArray << "=" * title.length
 end
 
 def print_names(names)
@@ -41,6 +41,7 @@ end
 
 students = input_students(:November)
 
-print (outputString += print_header("The students of my cohort at Makers Academy"))
+output = get_header("The students of my cohort at Makers Academy")
+print (output.join("\n") + "\n")
 print_names(students)
 print_footer(students)
