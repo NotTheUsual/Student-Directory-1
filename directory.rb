@@ -5,10 +5,11 @@ students = [
 	{name: "Ming the merciless", cohort: :July},
 	{name: "Donald Duck", cohort: :July}
 ]
+outputString = ""
 
 def print_header
-	puts "The students of my cohort at Makers Academy \n
-	-----------"
+	"The students of my cohort at Makers Academy
+-----------\n"
 end
 
 def print_names(names)
@@ -40,6 +41,6 @@ end
 
 students = input_students(:November)
 
-print_header()
+print (outputString += print_header())
 print_names(students)
 print_footer(students)
