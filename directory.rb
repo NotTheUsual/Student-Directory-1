@@ -7,9 +7,9 @@ students = [
 ]
 outputString = ""
 
-def print_header
-	"The students of my cohort at Makers Academy
------------\n"
+def print_header(title)
+	underline = "=" * title.length
+	title + "\n" + underline + "\n"
 end
 
 def print_names(names)
@@ -41,6 +41,6 @@ end
 
 students = input_students(:November)
 
-print (outputString += print_header())
+print (outputString += print_header("The students of my cohort at Makers Academy"))
 print_names(students)
 print_footer(students)
