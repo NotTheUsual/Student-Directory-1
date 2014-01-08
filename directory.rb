@@ -24,7 +24,7 @@ def get_names(students, first_letter = nil, max_length = 12)
 
 	outputArray = []
 	students.each_with_index do |student, index|
-		outputArray << "#{index}. #{student[:name]} (#{student[:cohort]})".center(80)
+		outputArray << "#{index}. #{student[:name]}".center(40) + " (#{student[:cohort]})".center(40)
 	end
 	outputArray
 end
