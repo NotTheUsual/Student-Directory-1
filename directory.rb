@@ -41,12 +41,15 @@ def input_students(cohort)
 	students
 end
 
-students = input_students(:November)
+print "Would you like to enter names? (y/n)"
+
+if (gets.chomp == "y")
+	students = input_students(:November)
+end
 
 outputHeader = get_header("The students of my cohort at Makers Academy")
 outputBody = get_names(students)
 
 print (outputHeader.join("\n") + "\n" + outputBody.join("\n") + "\n")
 
-print_names(students)
 print_footer(students)
