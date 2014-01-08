@@ -8,6 +8,7 @@ students = [
 
 def get_header(title)
 	outputArray = []
+	title = title.center(80)
 	outputArray << title
 	outputArray << "=" * title.length
 end
