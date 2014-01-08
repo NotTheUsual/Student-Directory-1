@@ -12,9 +12,13 @@ def get_header(title)
 	outputArray << "=" * title.length
 end
 
-def get_names(students, first_letter = nil)
-	if first_letter.nil?
-		students.select!{|student| student[:name].chars.first == "A"}
+def get_names(students, first_letter = nil, max_length = 12)
+	if !first_letter.nil?
+		students.select!{|student| student[:name].chars.first == first_letter}
+	end
+
+	if !max_length.nil?
+		students.select!{|student| student[:name].length <= max_length}
 	end
 
 	outputArray = []
