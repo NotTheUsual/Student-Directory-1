@@ -6,6 +6,14 @@ students = [
 	{name: "Donald Duck", cohort: :July}
 ]
 
+def pad_to(sample, length)
+	to_add = length - sample.size
+	if (to_add > 0 )
+		sample += " "*to_add
+	end
+	sample
+end
+
 def get_header(title)
 	outputArray = []
 	title = title.center(80)
@@ -24,7 +32,7 @@ def get_names(students, first_letter = nil, max_length = 12)
 
 	outputArray = []
 	students.each_with_index do |student, index|
-		outputArray << "#{index}. #{student[:name]}".center(40) + " (#{student[:cohort]})".center(40)
+		outputArray << pad_to("     #{index}. #{student[:name]}", 40) + pad_to("|  (#{student[:cohort]})", 40)
 	end
 	outputArray
 end
