@@ -36,8 +36,6 @@ def input_students(cohort = :January)
 	puts "Please enter the names of the students"
 	puts "To finish, just hit return twice"
 
-	#students = []
-
 	name = STDIN.gets.chomp
 
 	while !name.empty? do
@@ -60,8 +58,7 @@ def save_students
 	# iterate over the array of students
 	@students.each do |student|
 		student_data = [student[:name], student[:cohort]]
-		csv_line = student_data.join(",")
-		file.puts csv_line
+		file.puts student_data.join(",")
 	end
 	file.close
 end
@@ -93,15 +90,16 @@ def print_header(title, width=80)
 end
 
 def print_names(first_letter = nil, max_length = 12)
-	if !first_letter.nil?
-		@students.select!{|student| student[:name].chars.first == first_letter}
+	student_set = @students
+	unless first_letter.nil?
+		student_set.select!{|student| student[:name].chars.first == first_letter}
 	end
 
-	if !max_length.nil?
-		@students.select!{|student| student[:name].length <= max_length}
+	unless max_length.nil?
+		student_set.select!{|student| student[:name].length <= max_length}
 	end
 
-	@students.each_with_index do |student, index|
+	student_set.each_with_index do |student, index|
 		puts "     #{index+1}. #{student[:name]}".ljust(40) + "|  (#{student[:cohort]})".ljust(40)
 	end
 end
