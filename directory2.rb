@@ -57,23 +57,21 @@ def show_students
 end
 
 def save_students
-	# open the file for writing
-	file = File.open("students.csv", "w")
-	# iterate over the array of students
-	@students.each do |student|
-		student_data = [student[:name], student[:cohort]]
-		file.puts student_data.join(",")
+	File.open("students.csv", "w") do |io|  
+		@students.each do |student|
+			student_data = [student[:name], student[:cohort]]
+			io.puts student_data.join(",")
+		end
 	end
-	file.close
 end
 
 def load_students(filename = "students.csv")
-	file = File.open(filename, "r")
-	file.readlines.each do |line|
-		name, cohort = line.chomp.split(",")
-		add_one_student(name, cohort.to_sym)
+	File.open(filename, "r") do |file|
+		file.readlines.each do |line|
+			name, cohort = line.chomp.split(",")
+			add_one_student(name, cohort.to_sym)
+		end
 	end
-	file.close
 end
 
 def try_load_students
