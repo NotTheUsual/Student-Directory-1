@@ -1,4 +1,4 @@
-students = [
+@students = [
 	{name: "Me", cohort: :November},
 	{name: "James", cohort: :November},
 	{name: "Andrey", cohort: :November},
@@ -7,24 +7,20 @@ students = [
 ]
 
 def interactive_menu
-	students = []
+	#students = []
 	loop do
 		# 1. print the menu and ask the user what to do
-		puts "1. Input the students"
-		puts "2. Show the students"
-		puts "9. Exit"
+		print_menu
 		# 2. read the input and save it into a variable
 		selection = gets.chomp
 		# 3. do what the user has asked
 		case selection
 		when "1"
 			# input the students
-			students = input_students
+			input_students
 		when "2"
 			# show the students
-			print_header("The Students of Makers Academy")
-			print_names(students)
-			print_footer(students)
+			show_students
 		when "9"
 			exit
 		else
@@ -34,21 +30,32 @@ def interactive_menu
 	end
 end
 
+def print_menu
+	puts "1. Input the students"
+	puts "2. Show the students"
+	puts "9. Exit"
+end
+
 def input_students(cohort = :January)
 	puts "Please enter the names of the students"
 	puts "To finish, just hit return twice"
 
-	students = []
+	#students = []
 
 	name = gets.chomp
 
 	while !name.empty? do
-		students << {:name => name, cohort: cohort}
-		puts "Now we have #{students.length} students"
+		@students << {:name => name, cohort: cohort}
+		puts "Now we have #{@students.length} students"
 
 		name = gets.chomp
 	end
-	students
+end
+
+def show_students
+	print_header("The Students of Makers Academy")
+	print_names
+	print_footer
 end
 
 def print_header(title, width=80)
@@ -56,22 +63,22 @@ def print_header(title, width=80)
 	puts "=" * width
 end
 
-def print_names(students, first_letter = nil, max_length = 12)
+def print_names(first_letter = nil, max_length = 12)
 	if !first_letter.nil?
-		students.select!{|student| student[:name].chars.first == first_letter}
+		@students.select!{|student| student[:name].chars.first == first_letter}
 	end
 
 	if !max_length.nil?
-		students.select!{|student| student[:name].length <= max_length}
+		@students.select!{|student| student[:name].length <= max_length}
 	end
 
-	students.each_with_index do |student, index|
+	@students.each_with_index do |student, index|
 		puts "     #{index+1}. #{student[:name]}".ljust(40) + "|  (#{student[:cohort]})".ljust(40)
 	end
 end
 
-def print_footer(names, width=80)
+def print_footer(width=80)
 	puts "-"*width
-	puts "Overall we have #{names.length} great students".center(80)
+	puts "Overall we have #{@students.length} great students".center(80)
 end
 interactive_menu
