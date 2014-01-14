@@ -7,26 +7,9 @@
 ]
 
 def interactive_menu
-	#students = []
 	loop do
-		# 1. print the menu and ask the user what to do
 		print_menu
-		# 2. read the input and save it into a variable
-		selection = gets.chomp
-		# 3. do what the user has asked
-		case selection
-		when "1"
-			# input the students
-			input_students
-		when "2"
-			# show the students
-			show_students
-		when "9"
-			exit
-		else
-			puts "I don't know what you meant, try again"
-		end
-		# 4. repeat from step 1
+		process(gets.chomp)
 	end
 end
 
@@ -34,6 +17,19 @@ def print_menu
 	puts "1. Input the students"
 	puts "2. Show the students"
 	puts "9. Exit"
+end
+
+def process(selection)
+	case selction
+	when "1"
+		input_students
+	when "2"
+		show_students
+	when "9"
+		exit
+	else
+		puts "I don't know what you mean, try again"
+	end
 end
 
 def input_students(cohort = :January)
