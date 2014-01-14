@@ -7,6 +7,7 @@ students = [
 ]
 
 def interactive_menu
+	students = []
 	loop do
 		# 1. print the menu and ask the user what to do
 		puts "1. Input the students"
@@ -21,6 +22,9 @@ def interactive_menu
 			students = input_students
 		when "2"
 			# show the students
+			print_header("The Students of Makers Academy")
+			print_names(students)
+			print_footer(students)
 		when "9"
 			exit
 		else
@@ -62,8 +66,12 @@ def print_names(students, first_letter = nil, max_length = 12)
 	end
 
 	students.each_with_index do |student, index|
-		puts "     #{index}. #{student[:name]}".ljust(40) + "|  (#{student[:cohort]})".ljust(40)
+		puts "     #{index+1}. #{student[:name]}".ljust(40) + "|  (#{student[:cohort]})".ljust(40)
 	end
 end
-print_header("Student Cohort")
-print_names(students)
+
+def print_footer(names, width=80)
+	puts "-"*width
+	puts "Overall we have #{names.length} great students".center(80)
+end
+interactive_menu
