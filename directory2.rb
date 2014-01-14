@@ -34,13 +34,12 @@ def input_students(cohort = :January)
 	puts "Please enter the names of the students"
 	puts "To finish, just hit return twice"
 
-	name = STDIN.gets.chomp
+	loop do
+		name = STDIN.gets.chomp
+		break if name.empty?
 
-	while !name.empty? do
 		add_one_student(name, cohort)
 		puts "Now we have #{@students.length} students"
-
-		name = STDIN.gets.chomp
 	end
 end
 
@@ -62,9 +61,9 @@ def save_students
 	end
 end
 
-def load_students(filename)
-	# puts "Where would you like to load students from?"
-	# filename = STDIN.gets.chomp
+def load_students
+	puts "Where would you like to load students from?"
+	filename = STDIN.gets.chomp
 	CSV.foreach(filename) do |item|
 		name, cohort = item
 		add_one_student(name, cohort.to_sym)
