@@ -1,6 +1,14 @@
 require 'csv'
 @students = []
 
+MENU = {
+	1 => :input_students,
+	2 => :show_students,
+	3 => :save_students,
+	4 => :load_students,
+	9 => :exit
+}
+
 def interactive_menu
 	loop do
 		print_menu
@@ -17,20 +25,9 @@ def print_menu
 end
 
 def process(selection)
-	case selection
-	when "1"
-		input_students
-	when "2"
-		show_students
-	when "3"
-		save_students
-	when "4"
-		load_students
-	when "9"
-		exit
-	else
-		puts "I don't know what you mean, try again"
-	end
+	method = MENU[selection.to_i]
+	return send(method) if method
+	puts "I don't know what you mean, try again"
 end
 
 def input_students(cohort = :January)
@@ -58,12 +55,16 @@ def show_students
 end
 
 def save_students
-	CSV.open("students.csv", "w") do |io|  
+	puts "Where would you like to save the student directory?"
+	filename = STDIN.gets.chomp
+	CSV.open(filename, "w") do |io|  
 		@students.each { |student| io << [student[:name], student[:cohort]] }
 	end
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename)
+	# puts "Where would you like to load students from?"
+	# filename = STDIN.gets.chomp
 	CSV.foreach(filename) do |item|
 		name, cohort = item
 		add_one_student(name, cohort.to_sym)
